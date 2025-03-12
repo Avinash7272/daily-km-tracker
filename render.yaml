@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: daily-km-tracker
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python daily_km_backend.py
+    plan: free
