@@ -4,6 +4,15 @@ from datetime import datetime
 
 app = Flask(__name__)
 FILENAME = "daily_km_log.csv"
+# Register Blueprint
+app.register_blueprint(tracker_bp, url_prefix='/tracker')
+
+@app.route('/')
+def home():
+    return "Daily KM Tracker is Running!"
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000)  # Ensure it's accessible on Render
 
 # Initialize CSV file with headers if it doesn't exist
 def initialize_file():
@@ -36,4 +45,4 @@ def save_km_data():
 
 if __name__ == "__main__":
     from os import environ
-    app.run(host="0.0.0.0", port=environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=environ.get("PORT", 5000))
